@@ -94,9 +94,9 @@ if __name__ == "__main__":
 
             while True:
                 MaterialMenu = """\nPlease choose the material for the arcade machine:
-                1. Wood
-                2. Aluminum
-                3. Carbon Fiber\n
+                1. Wood ($150)
+                2. Aluminum ($250)
+                3. Carbon Fiber ($350)\n
                 """
 
                 material_option = int(input(MaterialMenu))
@@ -118,15 +118,15 @@ if __name__ == "__main__":
             GamesCatalog = """\nPlease choose the games that you want in your machine.
 
             Game Catalog:
-            1. Space Invaders
-            2. Pac-Man
-            3. Donkey Kong
-            4. Street Fighter
-            5. Galaga
-            6. Tetris
-            7. Frogger
-            8. Asteroids
-            9. Centipede
+            1. Space Invaders ($50)
+            2. Pac-Man ($60)
+            3. Donkey Kong ($55)
+            4. Street Fighter ($70)
+            5. Galaga ($65)
+            6. Tetris ($45)
+            7. Frogger ($50)
+            8. Asteroids ($55)
+            9. Centipede ($60)
             10. Finish Game Selection\n
             """
 
