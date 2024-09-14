@@ -18,6 +18,7 @@ General Public License for more details.
 You should have received a copy of the GNU General Public License 
 along with Workshop1-ArcMach. If not, see <https://www.gnu.org/licenses/>. 
 """
+
 from datetime import datetime
 from machine_classes import VideogamesMachine
 from machine_classes import Client
@@ -35,7 +36,6 @@ def record_purchase(client_name, price):
     """
     with open("purchase_history.txt", "a", encoding="utf-8") as f:
         f.write(f"{datetime.now()} --- Client: {client_name}, Total Price: ${price}\n")
-
 
 def show_purchase_history():
     """
@@ -82,8 +82,13 @@ if __name__ == "__main__":
         "Centipede": 60
     }
 
-    option = int(input(MENU))
-    while option != 3:
+    while True:
+        try:
+            option = int(input(MENU))
+        except ValueError:
+            print("Invalid option. Please enter a number.")
+            continue
+
         if option == 1:
             client = Client()
 
@@ -99,7 +104,12 @@ if __name__ == "__main__":
                 3. Carbon Fiber ($350)\n
                 """
 
-                material_option = int(input(MaterialMenu))
+                try:
+                    material_option = int(input(MaterialMenu))
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+
                 materials = {
                     1: "wood",
                     2: "aluminum",
@@ -133,7 +143,12 @@ if __name__ == "__main__":
             selected_game = 0
             selected_games = set()  # Set to track selected games
             while selected_game != 10:
-                selected_game = int(input(GamesCatalog))
+                try:
+                    selected_game = int(input(GamesCatalog))
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+
                 games = {
                     1: "Space Invaders",
                     2: "Pac-Man",
@@ -151,9 +166,12 @@ if __name__ == "__main__":
                     if game_name not in selected_games:
                         arcade_machine.AddGame(game_name)
                         selected_games.add(game_name)
+                        print(f"Added {game_name} to your machine.")
                     else:
                         print(f"The game {game_name} is already selected. Please choose another.")
-                elif selected_game != 10:
+                elif selected_game == 10:
+                    print("Game selection finished.")
+                else:
                     print("Invalid game option. Please choose again.")
 
             arcade_machine.CalculatePrice(material_cost, game_prices)
@@ -170,7 +188,8 @@ if __name__ == "__main__":
                         print(f"- {game} (${game_prices[game]})")
                 else:
                     print("No games selected.")
-                print(f"Total Cost of Games: ${sum(game_prices[game] for game in arcade_machine.games)}")
+                total_game_cost = sum(game_prices[game] for game in arcade_machine.games)
+                print(f"Total Cost of Games: ${total_game_cost}")
                 print(f"Total Cost: ${arcade_machine.price}")
 
                 continue_option = input("\nWould you like to buy or cancel? (Type 'buy' to purchase or 'cancel' to return to the menu): ").strip().lower()
@@ -186,8 +205,9 @@ if __name__ == "__main__":
 
         elif option == 2:
             show_purchase_history()
+        elif option == 3:
+            print("Exiting program. Goodbye!")
+            break
         else:
             print("Please, choose a valid option.")
 
-        if option != 3:
-            option = int(input(MENU))
