@@ -278,6 +278,7 @@ class Main:
         
         #=====================color=========================
         while True:
+            print("Please write the color:\n")
             color = input().strip() 
             
             if not color: 
