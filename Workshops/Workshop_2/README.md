@@ -1,4 +1,4 @@
-# Workshop 1
+# Workshop 2
 
 For this program, I implemented several classes, including User, Client, Manager, and VideoGame, along with various arcade machine classes like DanceRevolution and VirtualReality.
 
